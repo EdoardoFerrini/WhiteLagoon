@@ -92,8 +92,10 @@ namespace WhiteLagoon.Web.Controllers
         {
             var villaNumberExist = _db.VillaNumbers.Any( u=> u.Villa_Number == villaNumberVm.VillaNumber.Villa_Number);
 
-			if (ModelState.IsValid && !villaNumberExist)
+			if (ModelState.IsValid && villaNumberExist)
 			{
+                _db.VillaNumbers.Update(villaNumberVm.VillaNumber);
+                _db.SaveChanges();
                 TempData["success"] = "The VillaNumber has successfully edited.";
 				return RedirectToAction("Index");
 			}
@@ -110,7 +112,7 @@ namespace WhiteLagoon.Web.Controllers
 				return View(villaNumberVm);
 			}
 
-            ModelState.AddModelError("", "The Model state is not valid");
+            ModelState.AddModelError("DropdownVilla", "The Villa id is not valid");
             return RedirectToAction("Index");
 			
         }
