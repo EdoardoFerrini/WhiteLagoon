@@ -117,26 +117,39 @@ namespace WhiteLagoon.Web.Controllers
 			
         }
 
-        public IActionResult Delete(int villaId)
+        public IActionResult Delete(int villaNumberId)
         {
-			Villa villaFromDb = _db.Villas.SingleOrDefault(x => x.Id == villaId);
-			if (villaFromDb is null)
+            VillaNumberVm villaNumberVm = new()
+            {
+                VillaNumber = _db.VillaNumbers.SingleOrDefault(x => x.Villa_Number == villaNumberId),
+                DropdownVilla = _db.Villas.Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }),
+            };
+
+            if (villaNumberVm.VillaNumber is null)
 			{
 				return RedirectToAction("Error", "Home");
 			}
-            return View(villaFromDb);
+
+            return View(villaNumberVm);
         }
 
         [HttpPost]
-        public IActionResult Delete(Villa villa)
+        public IActionResult Delete(VillaNumberVm villaNumberVm)
         {
-            Villa? villafromDb = _db.Villas.FirstOrDefault(x => x.Id == villa.Id);
-            if (villafromDb is not null)
+            
+            VillaNumber villaNumberfromDb = _db.VillaNumbers.FirstOrDefault(x => x.Villa_Number == villaNumberVm.VillaNumber.Villa_Number);
+            if (villaNumberfromDb is not null)
             {
-				_db.Villas.Remove(villafromDb);
+				_db.VillaNumbers.Remove(villaNumberfromDb);
 				_db.SaveChanges();
+                TempData["success"] = "the VillaNumber is deleted successfully";
 				return RedirectToAction("Index");
 			}
+
             return RedirectToAction("Error","Home");
         }
     }
