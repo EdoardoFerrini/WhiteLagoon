@@ -64,5 +64,9 @@ namespace WhiteLagoon.Infrastructure.Repository
 		{
 			_db.Remove(entity);
 		}
-	}
+        public bool Any(Expression<Func<T, bool>> filter)
+        {
+            return _dbSet.Any(filter);
+        }
+    }
 }
