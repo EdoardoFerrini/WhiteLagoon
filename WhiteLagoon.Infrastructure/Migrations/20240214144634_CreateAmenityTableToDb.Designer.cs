@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WhiteLagoon.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using WhiteLagoon.Infrastructure.Data;
 namespace WhiteLagoon.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240214144634_CreateAmenityTableToDb")]
+    partial class CreateAmenityTableToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,9 +119,9 @@ namespace WhiteLagoon.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedTime = new DateTime(2024, 2, 14, 15, 55, 8, 157, DateTimeKind.Local).AddTicks(1983),
+                            CreatedTime = new DateTime(2024, 2, 14, 15, 46, 34, 125, DateTimeKind.Local).AddTicks(7155),
                             Description = "This is a villa placed near the sea.",
-                            ImageUrl = "https://placeholder.co/600x400",
+                            ImageUrl = "",
                             Name = "Beach Villa",
                             Occupancy = 5,
                             Price = 1000000.0,
@@ -127,9 +130,9 @@ namespace WhiteLagoon.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedTime = new DateTime(2024, 2, 14, 15, 55, 8, 157, DateTimeKind.Local).AddTicks(2064),
+                            CreatedTime = new DateTime(2024, 2, 14, 15, 46, 34, 125, DateTimeKind.Local).AddTicks(7210),
                             Description = "This is a villa close to Colosseo.",
-                            ImageUrl = "https://placeholder.co/600x400",
+                            ImageUrl = "",
                             Name = "City Villa",
                             Occupancy = 5,
                             Price = 1500000.0,
