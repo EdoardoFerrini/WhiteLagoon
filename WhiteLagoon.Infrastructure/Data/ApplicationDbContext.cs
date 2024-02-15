@@ -16,6 +16,7 @@ namespace WhiteLagoon.Infrastructure.Data
         }
         public DbSet<Villa> Villas { get; set; }
         public DbSet<VillaNumber> VillaNumbers { get; set; }
+        public DbSet<Amenity> Amenities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,7 +29,7 @@ namespace WhiteLagoon.Infrastructure.Data
                     Price = 1000000,
                     SquareFoot = 1000,
                     Description = "This is a villa placed near the sea.",
-                    ImageUrl = "",
+                    ImageUrl = "https://placeholder.co/600x400",
                     Occupancy = 5,
                     CreatedTime = DateTime.Now,
                 },
@@ -39,7 +40,7 @@ namespace WhiteLagoon.Infrastructure.Data
                     Price = 1500000,
                     SquareFoot = 1200,
                     Description = "This is a villa close to Colosseo.",
-                    ImageUrl = "",
+                    ImageUrl = "https://placeholder.co/600x400",
                     Occupancy = 5,
                     CreatedTime = DateTime.Now
                 }
@@ -58,24 +59,50 @@ namespace WhiteLagoon.Infrastructure.Data
                 new VillaNumber
                 {
                     Villa_Number = 102,
-                    VillaId = 1,
+                    VillaId = 1
                 },
                 new VillaNumber
                 {
                     Villa_Number = 200,
-                    VillaId = 2,
+                    VillaId = 2
                 },
                 new VillaNumber
                 {
                     Villa_Number = 201,
-                    VillaId = 2,
+                    VillaId = 2
                 },
                 new VillaNumber
                 {
                     Villa_Number = 202,
-                    VillaId = 2,
+                    VillaId = 2
                 }
                 );
+            modelBuilder.Entity<Amenity>().HasData(
+                new Amenity
+                {
+                    Id = 1,
+                    Name = "Private Plunge Pool",
+                    VillaId = 1,
+                },
+                new Amenity
+                {
+                    Id = 2,
+                    Name = "1 king bed and 1 sofa bed",
+                    VillaId = 1
+                },
+				new Amenity
+				{
+					Id = 3,
+					Name = "Microwave and Mini Refigrerator",
+					VillaId = 2
+				},
+				new Amenity
+				{
+					Id = 4,
+					Name = "Private Pool",
+					VillaId = 2
+				}
+				);
         }
     }
 }
