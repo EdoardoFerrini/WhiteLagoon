@@ -12,6 +12,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSqlConnection")));
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.ConfigureApplicationCookie(option =>
+{
+    option.AccessDeniedPath = "/Account/AccessDenied";
+    option.LoginPath = "/Account/Login";
+});
+builder.Services.Configure<IdentityOptions>(option =>
+{
+    option.Password.RequiredLength = 6;
+});
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
