@@ -70,13 +70,13 @@
 @section scripts {
     <script>
         function fnLoadVillaList() {
-            console.log('entra');
+            
             $('.spinner').show();
             var objData = {
                 checkInDate: $("#CheckInDate").val(),
                 nights: $("#Nights").val()
             };
-
+            console.log('objData', objData);
             $.ajax({
                 url: "@Url.Action("GetVillasByDate", "Home")",
                 data: objData, // Converte l'oggetto JavaScript in una stringa JSON

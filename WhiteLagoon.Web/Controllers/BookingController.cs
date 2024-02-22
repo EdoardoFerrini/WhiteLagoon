@@ -15,17 +15,19 @@ namespace WhiteLagoon.Web.Controllers
         {
             return View();
         }
-        public IActionResult FinalizeBooking(int villaId, DateOnly CheckInDate, int nights)
+        public IActionResult FinalizeBooking(int villaId, string checkInDate, int nights)
         {
+            DateOnly parsedCheckInDate = DateOnly.Parse(checkInDate);
             Booking booking = new()
             {
                 VillaId = villaId,
-                Villa = _unitOfWork.Villa.Get(u => u.Id == villaId, include:"VillaAmenities"),
-                CheckinDate = CheckInDate,
+                Villa = _unitOfWork.Villa.Get(u => u.Id == villaId, include: "VillaAmenities"),
+                CheckinDate = parsedCheckInDate,
                 Nights = nights,
-                CheckoutDate = CheckInDate.AddDays(nights),
+                CheckoutDate = parsedCheckInDate.AddDays(nights),
             };
             return View(booking);
+
         }
     }
 }
