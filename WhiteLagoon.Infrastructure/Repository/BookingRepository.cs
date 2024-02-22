@@ -9,7 +9,7 @@ using WhiteLagoon.Infrastructure.Data;
 
 namespace WhiteLagoon.Infrastructure.Repository
 {
-	public class BookingRepository : Repository<Amenity>, IBookingRepository
+	public class BookingRepository : Repository<Booking>, IBookingRepository
 	{
 		private readonly ApplicationDbContext _db;
 		public BookingRepository(ApplicationDbContext db):base(db)
