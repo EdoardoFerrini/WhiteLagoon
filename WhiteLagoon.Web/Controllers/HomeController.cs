@@ -30,9 +30,9 @@ namespace WhiteLagoon.Web.Controllers
         public IActionResult Index(HomeVm homeVm)
         {
             homeVm.VillaList = _unitOfWork.Villa.GetAll(include: "VillaAmenities");
-            foreach(var villa in homeVm.VillaList)
+            foreach (var villa in homeVm.VillaList)
             {
-                if(villa.Id % 2 == 0)
+                if (villa.Id % 2 == 0)
                 {
                     villa.IsAvailable = false;
                 }
@@ -40,6 +40,7 @@ namespace WhiteLagoon.Web.Controllers
             return View(homeVm);
         }
 
+        [HttpPost]
         public IActionResult GetVillasByDate(int nights, DateOnly checkInDate)
         {
             var villaList = _unitOfWork.Villa.GetAll(include:"VillaAmenities").ToList();

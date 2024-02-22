@@ -68,7 +68,7 @@
 </div>
 
 @section scripts {
-@*     <script>
+    <script>
         function fnLoadVillaList() {
             console.log('entra');
             $('.spinner').show();
@@ -96,46 +96,8 @@
                 }
             });
         }
-    </script> *@
-
-    <script>
-        function fnLoadVillaList() {
-            
-            document.querySelector('.spinner').style.display = 'block';
-            var checkInDate = document.getElementById("CheckInDate").value;
-            var nights = document.getElementById("Nights").value;
-
-            var objData = {
-                checkInDate: checkInDate,
-                nights: nights
-            };
-            console.log('objData', objData);
-            fetch('@Url.Action("GetVillasByDate", "Home")', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(objData)
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById("VillasList").innerHTML = data;
-                    document.querySelector('.spinner').style.display = 'none';
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    document.querySelector('.spinner').style.display = 'none';
-                    alert(error.message);
-                });
-        }
-
-
     </script>
+
 
 }
 
