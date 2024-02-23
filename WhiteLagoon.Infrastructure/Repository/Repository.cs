@@ -22,7 +22,7 @@ namespace WhiteLagoon.Infrastructure.Repository
 		}
 		public void Add(T entity)
 		{
-			_db.Add(entity);
+			_dbSet.Add(entity);
 		}
 
 		public T Get(Expression<Func<T, bool>> filter, string? include = null)
@@ -62,7 +62,7 @@ namespace WhiteLagoon.Infrastructure.Repository
 
 		public void Delete(T entity)
 		{
-			_db.Remove(entity);
+			_dbSet.Remove(entity);
 		}
         public bool Any(Expression<Func<T, bool>> filter)
         {
